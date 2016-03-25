@@ -1,0 +1,99 @@
+﻿@model IEnumerable<HABsMap.Models.habs_sample>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.report_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tissue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.azp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ptx)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ytx)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.psp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sample_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_sampled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.habs_area.location_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.habs_species.species_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.report_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tissue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.asp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.azp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ptx)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ytx)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.psp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sample_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_sampled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.habs_area.location_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.habs_species.species_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.sample_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.sample_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.sample_id })
+        </td>
+    </tr>
+}
+
+</table>

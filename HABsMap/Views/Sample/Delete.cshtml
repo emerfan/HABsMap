@@ -1,0 +1,120 @@
+﻿@model HABsMap.Models.habs_sample
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>habs_sample</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.report_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.report_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tissue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tissue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.azp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.azp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ptx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ptx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ytx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ytx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.psp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.psp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sample_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sample_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_sampled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_sampled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.habs_area.location_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.habs_area.location_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.habs_species.species_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.habs_species.species_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

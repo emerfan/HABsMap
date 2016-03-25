@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShellfishModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="msdb2293Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="habs_alert">
           <Key>
             <PropertyRef Name="user_id" />
@@ -84,7 +84,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ShellfishModelStoreContainer">
+        <EntityContainer Name="msdb2293ModelStoreContainer">
           <EntitySet Name="habs_alert" EntityType="Self.habs_alert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="habs_area" EntityType="Self.habs_area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="habs_sample" EntityType="Self.habs_sample" Schema="dbo" store:Type="Tables" />
@@ -106,7 +106,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ShellfishModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="msdb2293Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="habs_alert">
           <Key>
             <PropertyRef Name="user_id" />
@@ -215,9 +215,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ShellfishModelStoreContainer" CdmEntityContainer="msdb2293Entities">
+        <EntityContainerMapping StorageEntityContainer="msdb2293ModelStoreContainer" CdmEntityContainer="msdb2293Entities">
           <EntitySetMapping Name="habs_alert">
-            <EntityTypeMapping TypeName="ShellfishModel.habs_alert">
+            <EntityTypeMapping TypeName="msdb2293Model.habs_alert">
               <MappingFragment StoreEntitySet="habs_alert">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
@@ -227,7 +227,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="habs_area">
-            <EntityTypeMapping TypeName="ShellfishModel.habs_area">
+            <EntityTypeMapping TypeName="msdb2293Model.habs_area">
               <MappingFragment StoreEntitySet="habs_area">
                 <ScalarProperty Name="location_id" ColumnName="location_id" />
                 <ScalarProperty Name="location_name" ColumnName="location_name" />
@@ -237,7 +237,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="habs_sample">
-            <EntityTypeMapping TypeName="ShellfishModel.habs_sample">
+            <EntityTypeMapping TypeName="msdb2293Model.habs_sample">
               <MappingFragment StoreEntitySet="habs_sample">
                 <ScalarProperty Name="sample_id" ColumnName="sample_id" />
                 <ScalarProperty Name="location_id" ColumnName="location_id" />
@@ -256,7 +256,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="habs_species">
-            <EntityTypeMapping TypeName="ShellfishModel.habs_species">
+            <EntityTypeMapping TypeName="msdb2293Model.habs_species">
               <MappingFragment StoreEntitySet="habs_species">
                 <ScalarProperty Name="species_name" ColumnName="species_name" />
                 <ScalarProperty Name="species_id" ColumnName="species_id" />

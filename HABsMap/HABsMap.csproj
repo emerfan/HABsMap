@@ -123,36 +123,39 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SampleController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\habs_alert.cs">
-      <DependentUpon>ShellfishModel.tt</DependentUpon>
+      <DependentUpon>MarineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\habs_area.cs">
-      <DependentUpon>ShellfishModel.tt</DependentUpon>
+      <DependentUpon>MarineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\habs_sample.cs">
-      <DependentUpon>ShellfishModel.tt</DependentUpon>
+      <DependentUpon>MarineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\habs_species.cs">
-      <DependentUpon>ShellfishModel.tt</DependentUpon>
+      <DependentUpon>MarineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShellfishModel.Context.cs">
+    <Compile Include="Models\MarineModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShellfishModel.Context.tt</DependentUpon>
+      <DependentUpon>MarineModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShellfishModel.cs">
+    <Compile Include="Models\MarineModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShellfishModel.tt</DependentUpon>
+      <DependentUpon>MarineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShellfishModel.Designer.cs">
+    <Compile Include="Models\MarineModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShellfishModel.edmx</DependentUpon>
+      <DependentUpon>MarineModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,15 +171,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ShellfishModel.Context.tt">
+    <Content Include="Models\MarineModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShellfishModel.edmx</DependentUpon>
-      <LastGenOutput>ShellfishModel.Context.cs</LastGenOutput>
+      <DependentUpon>MarineModel.edmx</DependentUpon>
+      <LastGenOutput>MarineModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ShellfishModel.tt">
+    <Content Include="Models\MarineModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShellfishModel.edmx</DependentUpon>
-      <LastGenOutput>ShellfishModel.cs</LastGenOutput>
+      <DependentUpon>MarineModel.edmx</DependentUpon>
+      <LastGenOutput>MarineModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
@@ -184,12 +187,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
-    <EntityDeploy Include="Models\ShellfishModel.edmx">
+    <EntityDeploy Include="Models\MarineModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShellfishModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MarineModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ShellfishModel.edmx.diagram">
-      <DependentUpon>ShellfishModel.edmx</DependentUpon>
+    <Content Include="Models\MarineModel.edmx.diagram">
+      <DependentUpon>MarineModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -220,6 +223,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Sample\Create.cshtml" />
+    <Content Include="Views\Sample\Delete.cshtml" />
+    <Content Include="Views\Sample\Details.cshtml" />
+    <Content Include="Views\Sample\Edit.cshtml" />
+    <Content Include="Views\Sample\Index.cshtml" />
+    <Content Include="Views\Status\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
