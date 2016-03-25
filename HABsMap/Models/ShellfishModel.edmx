@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ShellfishModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="habs_alert">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="email_status" Type="smallint" Nullable="false" />
+          <Property Name="location_id" Type="nchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="habs_area">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="location_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="latitude" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="habs_sample">
+          <Key>
+            <PropertyRef Name="sample_id" />
+          </Key>
+          <Property Name="sample_id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="location_id" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="species_id" Type="smallint" Nullable="false" />
+          <Property Name="report_id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="tissue" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="asp" Type="nchar" MaxLength="5" />
+          <Property Name="azp" Type="nchar" MaxLength="5" />
+          <Property Name="dsp" Type="nchar" MaxLength="5" />
+          <Property Name="ptx" Type="nchar" MaxLength="5" />
+          <Property Name="ytx" Type="nchar" MaxLength="5" />
+          <Property Name="psp" Type="nchar" MaxLength="5" />
+          <Property Name="sample_status" Type="nchar" MaxLength="30" />
+          <Property Name="date_sampled" Type="datetime2" Precision="0" />
+        </EntityType>
+        <EntityType Name="habs_species">
+          <Key>
+            <PropertyRef Name="species_id" />
+          </Key>
+          <Property Name="species_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="species_id" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_habs_alert_habs_area1">
+          <End Role="habs_area" Type="Self.habs_area" Multiplicity="1" />
+          <End Role="habs_alert" Type="Self.habs_alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habs_area">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="habs_alert">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habs_sample_habs_area1">
+          <End Role="habs_area" Type="Self.habs_area" Multiplicity="1" />
+          <End Role="habs_sample" Type="Self.habs_sample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habs_area">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="habs_sample">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habs_sample_habs_species1">
+          <End Role="habs_species" Type="Self.habs_species" Multiplicity="1" />
+          <End Role="habs_sample" Type="Self.habs_sample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habs_species">
+              <PropertyRef Name="species_id" />
+            </Principal>
+            <Dependent Role="habs_sample">
+              <PropertyRef Name="species_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShellfishModelStoreContainer">
+          <EntitySet Name="habs_alert" EntityType="Self.habs_alert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habs_area" EntityType="Self.habs_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habs_sample" EntityType="Self.habs_sample" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habs_species" EntityType="Self.habs_species" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_habs_alert_habs_area1" Association="Self.FK_habs_alert_habs_area1">
+            <End Role="habs_area" EntitySet="habs_area" />
+            <End Role="habs_alert" EntitySet="habs_alert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habs_sample_habs_area1" Association="Self.FK_habs_sample_habs_area1">
+            <End Role="habs_area" EntitySet="habs_area" />
+            <End Role="habs_sample" EntitySet="habs_sample" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habs_sample_habs_species1" Association="Self.FK_habs_sample_habs_species1">
+            <End Role="habs_species" EntitySet="habs_species" />
+            <End Role="habs_sample" EntitySet="habs_sample" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShellfishModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="habs_alert">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="email_status" Type="Int16" Nullable="false" />
+          <Property Name="location_id" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="habs_area" Relationship="Self.FK_habs_alert_habs_area1" FromRole="habs_alert" ToRole="habs_area" />
+        </EntityType>
+        <EntityType Name="habs_area">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="location_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="latitude" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+          <Property Name="longitude" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+          <NavigationProperty Name="habs_alert" Relationship="Self.FK_habs_alert_habs_area1" FromRole="habs_area" ToRole="habs_alert" />
+          <NavigationProperty Name="habs_sample" Relationship="Self.FK_habs_sample_habs_area1" FromRole="habs_area" ToRole="habs_sample" />
+        </EntityType>
+        <EntityType Name="habs_sample">
+          <Key>
+            <PropertyRef Name="sample_id" />
+          </Key>
+          <Property Name="sample_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="location_id" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="species_id" Type="Int16" Nullable="false" />
+          <Property Name="report_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tissue" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="asp" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="azp" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="dsp" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="ptx" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="ytx" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="psp" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="sample_status" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="date_sampled" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="habs_area" Relationship="Self.FK_habs_sample_habs_area1" FromRole="habs_sample" ToRole="habs_area" />
+          <NavigationProperty Name="habs_species" Relationship="Self.FK_habs_sample_habs_species1" FromRole="habs_sample" ToRole="habs_species" />
+        </EntityType>
+        <EntityType Name="habs_species">
+          <Key>
+            <PropertyRef Name="species_id" />
+          </Key>
+          <Property Name="species_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="species_id" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="habs_sample" Relationship="Self.FK_habs_sample_habs_species1" FromRole="habs_species" ToRole="habs_sample" />
+        </EntityType>
+        <Association Name="FK_habs_alert_habs_area1">
+          <End Role="habs_area" Type="Self.habs_area" Multiplicity="1" />
+          <End Role="habs_alert" Type="Self.habs_alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habs_area">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="habs_alert">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habs_sample_habs_area1">
+          <End Role="habs_area" Type="Self.habs_area" Multiplicity="1" />
+          <End Role="habs_sample" Type="Self.habs_sample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habs_area">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="habs_sample">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habs_sample_habs_species1">
+          <End Role="habs_species" Type="Self.habs_species" Multiplicity="1" />
+          <End Role="habs_sample" Type="Self.habs_sample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habs_species">
+              <PropertyRef Name="species_id" />
+            </Principal>
+            <Dependent Role="habs_sample">
+              <PropertyRef Name="species_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="msdb2293Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="habs_alert" EntityType="Self.habs_alert" />
+          <EntitySet Name="habs_area" EntityType="Self.habs_area" />
+          <EntitySet Name="habs_sample" EntityType="Self.habs_sample" />
+          <EntitySet Name="habs_species" EntityType="Self.habs_species" />
+          <AssociationSet Name="FK_habs_alert_habs_area1" Association="Self.FK_habs_alert_habs_area1">
+            <End Role="habs_area" EntitySet="habs_area" />
+            <End Role="habs_alert" EntitySet="habs_alert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habs_sample_habs_area1" Association="Self.FK_habs_sample_habs_area1">
+            <End Role="habs_area" EntitySet="habs_area" />
+            <End Role="habs_sample" EntitySet="habs_sample" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habs_sample_habs_species1" Association="Self.FK_habs_sample_habs_species1">
+            <End Role="habs_species" EntitySet="habs_species" />
+            <End Role="habs_sample" EntitySet="habs_sample" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShellfishModelStoreContainer" CdmEntityContainer="msdb2293Entities">
+          <EntitySetMapping Name="habs_alert">
+            <EntityTypeMapping TypeName="ShellfishModel.habs_alert">
+              <MappingFragment StoreEntitySet="habs_alert">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="email_status" ColumnName="email_status" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habs_area">
+            <EntityTypeMapping TypeName="ShellfishModel.habs_area">
+              <MappingFragment StoreEntitySet="habs_area">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habs_sample">
+            <EntityTypeMapping TypeName="ShellfishModel.habs_sample">
+              <MappingFragment StoreEntitySet="habs_sample">
+                <ScalarProperty Name="sample_id" ColumnName="sample_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="species_id" ColumnName="species_id" />
+                <ScalarProperty Name="report_id" ColumnName="report_id" />
+                <ScalarProperty Name="tissue" ColumnName="tissue" />
+                <ScalarProperty Name="asp" ColumnName="asp" />
+                <ScalarProperty Name="azp" ColumnName="azp" />
+                <ScalarProperty Name="dsp" ColumnName="dsp" />
+                <ScalarProperty Name="ptx" ColumnName="ptx" />
+                <ScalarProperty Name="ytx" ColumnName="ytx" />
+                <ScalarProperty Name="psp" ColumnName="psp" />
+                <ScalarProperty Name="sample_status" ColumnName="sample_status" />
+                <ScalarProperty Name="date_sampled" ColumnName="date_sampled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habs_species">
+            <EntityTypeMapping TypeName="ShellfishModel.habs_species">
+              <MappingFragment StoreEntitySet="habs_species">
+                <ScalarProperty Name="species_name" ColumnName="species_name" />
+                <ScalarProperty Name="species_id" ColumnName="species_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
