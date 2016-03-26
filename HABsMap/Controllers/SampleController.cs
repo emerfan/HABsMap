@@ -49,7 +49,7 @@ namespace HABsMap.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "sample_id,location_id,species_id,report_id,tissue,asp,azp,dsp,ptx,ytx,psp,sample_status,date_sampled")] habs_sample habs_sample)
+        public ActionResult Create([Bind(Include = "sample_id,location_id,species_id,report_id,tissue,asp,azp,dsp,ptx,ytx,psp,sample_status,date_sampled,sample_date")] habs_sample habs_sample)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace HABsMap.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "sample_id,location_id,species_id,report_id,tissue,asp,azp,dsp,ptx,ytx,psp,sample_status,date_sampled")] habs_sample habs_sample)
+        public ActionResult Edit([Bind(Include = "sample_id,location_id,species_id,report_id,tissue,asp,azp,dsp,ptx,ytx,psp,sample_status,date_sampled,sample_date")] habs_sample habs_sample)
         {
             if (ModelState.IsValid)
             {
@@ -132,5 +132,6 @@ namespace HABsMap.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

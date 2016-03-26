@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="msdb2293Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="msdb2293Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="habs_alert">
           <Key>
             <PropertyRef Name="user_id" />
@@ -40,6 +40,7 @@
           <Property Name="psp" Type="nchar" MaxLength="5" />
           <Property Name="sample_status" Type="nchar" MaxLength="30" />
           <Property Name="date_sampled" Type="datetime2" Precision="0" />
+          <Property Name="sample_date" Type="date" />
         </EntityType>
         <EntityType Name="habs_species">
           <Key>
@@ -102,8 +103,7 @@
             <End Role="habs_sample" EntitySet="habs_sample" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="msdb2293Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -147,6 +147,7 @@
           <Property Name="date_sampled" Type="DateTime" Precision="0" />
           <NavigationProperty Name="habs_area" Relationship="Self.FK_habs_sample_habs_area1" FromRole="habs_sample" ToRole="habs_area" />
           <NavigationProperty Name="habs_species" Relationship="Self.FK_habs_sample_habs_species1" FromRole="habs_sample" ToRole="habs_species" />
+          <Property Name="sample_date" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="habs_species">
           <Key>
@@ -239,6 +240,7 @@
           <EntitySetMapping Name="habs_sample">
             <EntityTypeMapping TypeName="msdb2293Model.habs_sample">
               <MappingFragment StoreEntitySet="habs_sample">
+                <ScalarProperty Name="sample_date" ColumnName="sample_date" />
                 <ScalarProperty Name="sample_id" ColumnName="sample_id" />
                 <ScalarProperty Name="location_id" ColumnName="location_id" />
                 <ScalarProperty Name="species_id" ColumnName="species_id" />

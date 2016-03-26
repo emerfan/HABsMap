@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -14,32 +15,35 @@ namespace HABsMap.Models
         public decimal latitude;
         public decimal longitude;
         public string status;
-        public string currentStatus;
-        public DateTime thedate;
+        public DateTime sampDate;
 
 
         public StatusModel()
         {
-            // TODO: Complete member initialization
-            setStatus();
         }
 
 
-
-        public void setStatus()
+        public int difference
         {
-            if ((thedate - DateTime.Now).TotalDays < 14)
-            {
-                this.currentStatus = "Closed/Pending";
-            }
-            else if ((thedate == DateTime.Now))
-            {
-                this.currentStatus = "NOW";
-            }
-            else
-            {
-                this.currentStatus = status;
-            }
+            get { return (DateTime.Now - sampDate).Days; }
+
         }
+
+
+        public string getCurrentStatus
+        {
+            get {
+                    if (difference >= 14)
+                        {
+                            return "Closed";
+                        }
+                    else
+                        {
+                            return status;
+                        }
+                }
+           
+        }
+
     }
 }

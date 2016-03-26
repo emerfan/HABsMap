@@ -42,6 +42,9 @@
             @Html.DisplayNameFor(model => model.date_sampled)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.sample_date)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.habs_area.location_name)
         </th>
         <th>
@@ -81,6 +84,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.date_sampled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sample_date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.habs_area.location_name)

@@ -27,8 +27,10 @@ namespace HABsMap.Models
         public string psp { get; set; }
         public string sample_status { get; set; }
         public Nullable<System.DateTime> date_sampled { get; set; }
+        public Nullable<System.DateTime> sample_date { get; set; }
     
         public virtual habs_area habs_area { get; set; }
         public virtual habs_species habs_species { get; set; }
+ 
     }
 }

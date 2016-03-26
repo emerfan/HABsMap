@@ -11,6 +11,7 @@ namespace HABsMap.Controllers
     {
         //Declare an instance of the database model
         msdb2293Entities db = new msdb2293Entities();
+        private object getCurrentStatus;
 
 
         // GET: Status
@@ -27,7 +28,7 @@ namespace HABsMap.Controllers
                              latitude = a.latitude,
                              longitude = a.longitude,
                              status = sample.sample_status,
-                             thedate = sample.date_sampled ?? DateTime.Now
+                             sampDate = sample.sample_date ?? DateTime.Now
                          };
             return View(result);
         }
@@ -47,7 +48,7 @@ namespace HABsMap.Controllers
                              latitude = a.latitude,
                              longitude = a.longitude,
                              status = sample.sample_status,
-                             thedate = sample.date_sampled ?? DateTime.Now
+                             sampDate = sample.sample_date ?? DateTime.Now
                          };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
