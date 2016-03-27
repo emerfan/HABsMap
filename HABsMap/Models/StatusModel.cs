@@ -21,8 +21,6 @@ namespace HABsMap.Models
         public StatusModel()
         {
         }
-
-
         public int difference
         {
             get { return (DateTime.Now - sampDate).Days; }
@@ -34,15 +32,9 @@ namespace HABsMap.Models
         {
             get {
                     if (difference >= 14)
-                        {
-                            return "Closed";
-                        }
-                    else
-                        {
-                            return status;
-                        }
-                }
-           
+                        { return "Closed / Pending ";}
+                    else{ return status;}
+                }         
         }
 
     }

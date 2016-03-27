@@ -6,6 +6,18 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <!--Leaflet.JS CSS-->
+    <link href="~/Content/leaflet.css" rel="stylesheet" />
+
+    <!--Minified JQuery for Map-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+    <!--AngularJS Minified Library-->
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Controllers/Angular_Controllers/ShellfishSamplesController.js"></script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,5 +50,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <!--LeafletJS minified script-->
+    <script src="~/Scripts/leaflet-0.7.3.min.js"></script>
+    <script src="~/Scripts/map-init.js"></script>
+    <script src="~/Scripts/harvesting-areas.js"></script>
 </body>
 </html>

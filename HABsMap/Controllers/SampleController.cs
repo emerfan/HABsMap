@@ -14,12 +14,66 @@ namespace HABsMap.Controllers
     {
         private msdb2293Entities db = new msdb2293Entities();
 
-        // GET: Sample
-        public ActionResult Index()
+
+        //GET: Specific Area Samples
+        public ActionResult Index(string areaname)
         {
-            var habs_sample = db.habs_sample.Include(h => h.habs_area).Include(h => h.habs_species);
-            return View(habs_sample.ToList());
+            //Viewbag variable for the page title
+            ViewBag.AreaName = areaname;
+
+            //Get the Shellfish Samples
+            var habs_shellfish_sample = db.habs_sample.Include(h => h.habs_area).Include(h => h.habs_species);
+
+
+            if (!String.IsNullOrEmpty(areaname))
+            {
+                //Search for the correct shellfish samples matching the query string passed
+                habs_shellfish_sample = habs_shellfish_sample.Where(h => h.habs_area.location_name.Contains(areaname));
+            }
+            //Return them to the view
+            return View(habs_shellfish_sample.ToList());
         }
+
+
+
+        public ActionResult SearchSamples()
+        {
+            return View();
+        }
+
+        //Prevent the program from caching the JSON result
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public JsonResult GetSamples(string areaname)
+        {
+            //Return all the samples and the area name.
+            var result = (
+                            from a in db.habs_sample
+                            join c in db.habs_area
+                            on a.location_id equals c.location_id
+
+
+                            join d in db.habs_species
+                            on a.species_id equals d.species_id
+                            select new
+                            {
+                                Location = c.location_name,
+                                Status = a.sample_status,
+                                Date = a.sample_date,
+                                Species = d.species_name,
+                                ASP = a.asp,
+                                PSP = a.psp,
+                                DSP = a.dsp,
+                                AZP = a.azp,
+                            });
+
+            if (!String.IsNullOrEmpty(areaname))
+            {
+                result = result.Where(r => r.Location.Contains(areaname));
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: Sample/Details/5
         public ActionResult Details(string id)

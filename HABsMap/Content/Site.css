@@ -1,24 +1,70 @@
-﻿body {
+﻿body 
+{
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+.dl-horizontal dt 
+{
     white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
-textarea {
+textarea 
+{
     max-width: 280px;
+}
+
+
+#map 
+{
+    height: 760px;
+}
+
+.navbar-marine 
+{
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.14),0 4px 5px 0 rgba(0,0,0,.098),0 1px 10px 0 rgba(0,0,0,.084);
+    background-color: #ffffff;
+    height: 80px;
+    padding-top: 10px;
+}
+
+/*
+.navbar-brand 
+{
+    background: url('Images/MarineLogo.jpg') no-repeat top left;
+    display: block;
+    width: 560px;
+    height: 100px;
+    text-indent: -9999px;
+    font-size: 28px;
+    font-weight: 700;
+}
+    */
+
+a 
+{
+    color: #2457c4;
+    text-decoration: none;
+}
+
+.leaflet-top 
+{
+    top: 25px!important;
+}
+
+.page-container
+{
+    padding-top: 60px;
+}
+
+label-marine {
+    background-color: #2457c4!important;
+    color: #ffffff;
 }
