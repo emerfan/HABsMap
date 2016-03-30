@@ -15,6 +15,7 @@ namespace HABsMap.Models
         public decimal latitude;
         public decimal longitude;
         public string status;
+        public string species;
         public DateTime sampDate;
 
 

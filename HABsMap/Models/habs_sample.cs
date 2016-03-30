@@ -31,6 +31,5 @@ namespace HABsMap.Models
     
         public virtual habs_area habs_area { get; set; }
         public virtual habs_species habs_species { get; set; }
- 
     }
 }

@@ -68,3 +68,71 @@ label-marine {
     background-color: #2457c4!important;
     color: #ffffff;
 }
+
+
+.home-left {
+    background-image: url('Images/map-bg.PNG');
+    background-size: 250%;
+    background-position:center;
+    background-color: aqua;
+}
+
+
+.home-right {
+    background-image: url('Images/list.PNG');
+    background-size: 450%;
+    background-position: center;
+    background-color: aqua;
+}
+
+.home-container {
+    width: 100%;
+}
+
+.home-panel{
+    text-align:center;
+    height: 768px;
+}
+
+
+.world-map{
+    width: 200px;
+    margin-top:200px;
+}
+
+.list-icon {
+    width: 130px;
+    margin-top:220px;
+}
+
+.icon {
+    position: inherit;
+    cursor: pointer;
+}
+
+
+.home-h4{
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+
+
+.navbar-marine 
+{
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.14),0 4px 5px 0 rgba(0,0,0,.098),0 1px 10px 0 rgba(0,0,0,.084);
+    background-color: #ffffff;
+    height: 65px;
+    padding-top: 10px;
+}
+
+.navbar-brand 
+{
+    background: url('Images/marine-logo.jpg') no-repeat top left;
+    display: block;
+    height: 130px;
+    text-indent: -9999px;
+    font-size: 28px;
+    font-weight: 700;
+}

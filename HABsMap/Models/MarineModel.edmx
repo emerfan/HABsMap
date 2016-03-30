@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_email" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="email_status" Type="smallint" Nullable="false" />
           <Property Name="location_id" Type="nchar" MaxLength="8" Nullable="false" />

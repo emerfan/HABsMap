@@ -122,7 +122,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AlertController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
@@ -162,13 +162,18 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\list.PNG" />
+    <Content Include="Content\Images\map-bg.PNG" />
+    <Content Include="Content\Images\clipboard-list-flat.png" />
+    <Content Include="Content\Images\marine-logo.jpg" />
+    <Content Include="Content\Images\world-map-icon.png" />
     <Content Include="Scripts\images\layers-2x.png" />
     <Content Include="Scripts\images\layers.png" />
     <Content Include="Scripts\images\marker-icon-2x.png" />
     <Content Include="Scripts\images\marker-icon.png" />
     <Content Include="Scripts\images\marker-shadow.png" />
     <Content Include="Content\leaflet.css" />
-    <Content Include="Controllers\Angular_Controllers\ShellfishSamplesController.js" />
+    <Content Include="Controllers\Angular_Controllers\SearchSamples.js" />
     <Content Include="fonts\favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -223,9 +228,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Sample\Create.cshtml" />
     <Content Include="Views\Sample\Delete.cshtml" />
@@ -235,6 +237,11 @@
     <Content Include="Views\Status\Index.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Sample\SearchSamples.cshtml" />
+    <Content Include="Views\Alert\Create.cshtml" />
+    <Content Include="Views\Alert\Delete.cshtml" />
+    <Content Include="Views\Alert\Details.cshtml" />
+    <Content Include="Views\Alert\Edit.cshtml" />
+    <Content Include="Views\Alert\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

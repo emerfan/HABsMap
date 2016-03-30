@@ -18,19 +18,19 @@ namespace HABsMap.Controllers
         public ActionResult Index()
         {
             var result = from a in db.habs_area
-                         join c in db.habs_sample
-                         on a.location_id equals c.location_id into samples
-                         let sample = samples.OrderByDescending(c => c.date_sampled).FirstOrDefault()
-                         select new StatusModel
-                         {
-                             location_name = a.location_name,
-                             latitude = a.latitude,
-                             longitude = a.longitude,
-                             status = sample.sample_status,
-                             sampDate = sample.sample_date ?? DateTime.Now
-                         };
+                          join c in db.habs_sample
+                          on a.location_id equals c.location_id into samples
+                          let sample = samples.OrderByDescending(c => c.date_sampled).FirstOrDefault()
+                          select new StatusModel
+                          {
+                              location_name = a.location_name,
+                              latitude = a.latitude,
+                              longitude = a.longitude,
+                              status = sample.sample_status,
+                              sampDate = sample.sample_date ?? DateTime.Now
+                          };
 
-
+    
             return View(result);
         }
 
