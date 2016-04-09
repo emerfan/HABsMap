@@ -24,27 +24,39 @@
                 <h2>Search All Samples</h2>
             }
 
-            <div class="well">
+       <!--Search Form-->
+       <div class="well">
 
-                @using (Html.BeginForm("Index", "Sample", FormMethod.Post, new { @class = "form-inline" }))
-            {    <label for="exampleInputName2">Location Name</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="txtAreaname" name="areaname" />
-                </div>
+            @using (Html.BeginForm("Index", "Sample", FormMethod.Post, new { @class = "form-inline" }))
+            { 
+                <label for="exampleInputName2">Location Name</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtAreaname" name="areaname" />
+                    </div>
                 <label for="exampleInputEmail2">Species</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="txtSpecies" name="species" />
-                </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtSpecies" name="species" />
+                    </div>
                 <label for="exampleInputEmail2">Sample Date</label>
-                <div class="form-group">
-                    <input type="text" class="form-control date-picker" id="txtDate" name="date" />
-                </div>
-                <button type="submit" class="btn btn-info">Search Samples</button>
+                    <div class="form-group">
+                        <input type="text" class="form-control date-picker" id="txtDate" name="date" />
+                    </div>
+                    <button type="submit" class="btn btn-info">Search All Samples</button>
                 }
-            </div>
+
+         </div>
+         <!--End Search Form-->
 
 
             <div class="table-responsive">
+
+                <!-- Breadcrumbs of current search -->
+                <ul class="breadcrumb" style="margin-bottom: 0px;">
+                    <li>Your Search:</li>
+                    <li><strong>Location Name:</strong> @ViewBag.AreaName</li>
+                    <li><strong>Sample Species:</strong> @ViewBag.Species</li>
+                    <li><strong>Sample Date:</strong> @ViewBag.Date</li>
+                </ul>
                 <table class="table">
                     <tr>
                         <th>

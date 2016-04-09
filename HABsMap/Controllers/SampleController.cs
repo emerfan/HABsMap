@@ -20,6 +20,8 @@ namespace HABsMap.Controllers
         {
             //Viewbag variable for the page title
             ViewBag.AreaName = areaname;
+            ViewBag.Species = species;
+            ViewBag.Date = date;
 
             //Return all the samples and the area name.
             var result = (
@@ -90,54 +92,7 @@ namespace HABsMap.Controllers
                 result = result.Where(r => r.Date.Equals(sampleDate));
             }
 
-
-
             return View(result);
         }
-
-
-
-
-        //This is for the Angular Search View, Might Get Rid of it
-        public ActionResult SearchSamples()
-        {
-            return View();
-        }
-
-
-
-        //Prevent the program from caching the JSON result - Angular Search Page
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult GetSamples(string areaname)
-        {
-            //Return all the samples and the area name.
-            var result = (
-                            from a in db.habs_sample
-                            join c in db.habs_area
-                            on a.location_id equals c.location_id
-
-
-                            join d in db.habs_species
-                            on a.species_id equals d.species_id
-                            select new
-                            {
-                                Location = c.location_name,
-                                Status = a.sample_status,
-                                Date = a.sample_date,
-                                Species = d.species_name,
-                                ASP = a.asp,
-                                PSP = a.psp,
-                                DSP = a.dsp,
-                                AZP = a.azp,
-                            });
-
-            if (!String.IsNullOrEmpty(areaname))
-            {
-                result = result.Where(r => r.Location.Contains(areaname));
-            }
-
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
     }
 }

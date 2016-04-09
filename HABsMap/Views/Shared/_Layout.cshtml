@@ -31,13 +31,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Application name", "Index", "Map", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Map")</li>
-                    <li>@Html.ActionLink("Disclaimer", "About", "Home")</li>
-                    <li>@Html.ActionLink("Disclaimer", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Area Status List View", "Index", "Status")</li>
+                    <li>@Html.ActionLink("Search All Samples", "Index", "Sample")</li>
+                    <li>@Html.ActionLink("Disclaimer", "Disclaimer", "Info")</li>
                 </ul>
             </div>
         </div>

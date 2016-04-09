@@ -15,7 +15,7 @@ namespace HABsMap.Controllers
 
         // GET: Status
         //Returns a List View of the Areas
-        public ActionResult Index()
+        public ActionResult Index(string areaname)
         {
             var result = from a in db.habs_area
                           join c in db.habs_sample
@@ -26,12 +26,17 @@ namespace HABsMap.Controllers
                               location_name = a.location_name,
                               latitude = a.latitude,
                               longitude = a.longitude,
+                              species = sample.species_id,
                               status = sample.sample_status,
                               sampDate = sample.sample_date ?? DateTime.Now
                           };
+            //Search By Name Only or by Name and Species
+            if (!String.IsNullOrEmpty(areaname))
+            {
+                result = result.Where(r => r.location_name.Contains(areaname));
+            }
 
-    
-            return View(result);
+                return View(result);
         }
 
         //Returns areas as JSON Objects to be passed to the LeafletJS Map

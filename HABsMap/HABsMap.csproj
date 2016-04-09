@@ -208,7 +208,6 @@
     <Content Include="Scripts\images\marker-icon.png" />
     <Content Include="Scripts\images\marker-shadow.png" />
     <Content Include="Content\leaflet.css" />
-    <Content Include="Controllers\Angular_Controllers\SearchSamples.js" />
     <Content Include="fonts\favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -271,18 +270,17 @@
     <Content Include="Views\Sample\Details.cshtml" />
     <Content Include="Views\Sample\Edit.cshtml" />
     <Content Include="Views\Sample\Index.cshtml" />
-    <Content Include="Views\Status\Index.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
-    <Content Include="Views\Sample\SearchSamples.cshtml" />
     <Content Include="Views\Alert\Create.cshtml" />
     <Content Include="Views\Alert\Delete.cshtml" />
     <Content Include="Views\Alert\Details.cshtml" />
     <Content Include="Views\Alert\Edit.cshtml" />
     <Content Include="Views\Alert\Index.cshtml" />
+    <Content Include="Views\Info\Disclaimer.cshtml" />
+    <Content Include="Views\Status\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Info\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

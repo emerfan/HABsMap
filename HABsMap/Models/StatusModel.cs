@@ -15,11 +15,17 @@ namespace HABsMap.Models
 
     public class StatusModel
     {
+
+        //Declare an instance of the database model, used for species query
+        msdb2293Entities db = new msdb2293Entities();
+
+
         /// <summary>
         /// Data Members for Status Model _ these are returned as JSON via the StatusModel Controller, and they are called by a function which places them
         /// as markers on the LeafletJS map
         /// </summary>
         /// 
+
         public string location_name;
         public decimal latitude;
         public decimal longitude;
@@ -53,48 +59,23 @@ namespace HABsMap.Models
                 }         
         }
 
-        // Species Name Getter, Calls method which returns the sample species name from the database.
-       /* public string species_name
+        // Species Name Getter, Calls method which returns the sample species name
+        public string species_name
         {
             get
             {
                 return getSpeciesName();
             }
         }
-        */
-        //Method to return the species names from the database - Had terrible trouble with LINQ query joining three tables 
-        //Into the StatusModel model, so got it working this way as was vital for requirements. Not delighted about it but it works.
-
-        /*public string getSpeciesName()
+        
+        //Method to get the species name from the habs_species model
+        public string getSpeciesName()
         {
-           try
-            {
-                //SqlConnection
-                SqlConnection conn = new SqlConnection("Server=lugh4.it.nuigalway.ie;Database=msdb2293;Uid=msdb2293;Pwd = msdb2293EM;");
-                //Open Connection
-                conn.Open();
-                //Create a SQL Command
-                SqlCommand command = new SqlCommand("select species_name from habs_species where species_id =" + species + ";", conn);
-                //SqlDataReader to read the data
-                SqlDataReader rdr = null;
-                //Execute the Reader with the SQL Command
-                rdr = command.ExecuteReader();
-                //While There is Data to be read
-                while (rdr.Read())
-                {
-                    //Get the result and assign it to spec
-                    spec = rdr[0].ToString();
-                }
-                //Return the species name
-                return spec;
-
-            }
-            catch(Exception e)
-            {
-                return "Species Not Available";
-            }
+            string species = (from spec in db.habs_species
+                           where spec.species_id == this.species
+                           select spec.species_name).First();
+            return species;
         }
-        */
 
     }
 }

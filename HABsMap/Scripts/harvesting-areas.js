@@ -3,8 +3,6 @@
 function displayData(response) {
     //If JSON is passed
     if (response != null) {
-        //Hide the alert box which warns for no internet connection
-        $('.alert-no-network').hide();
         //Loop Through the JSON reponse
         for (var i = 0; i < response.length; i++) {
             //Get the Latitude and Longitude from the JSON response and add to the Leaflet Map
@@ -34,7 +32,7 @@ function displayData(response) {
     {
         //Alert the user to check their internet connection and update the text in the warning box on the map page
         var warning = "Could not retrive samples, no network connection detected. Please ensure that you have an internet connection. ";
-        $('.alert-no-network').html(warning);
+        $('.alert-no-network').html(warning).css('display', 'block');
     }
 }
 
