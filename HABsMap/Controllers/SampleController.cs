@@ -15,33 +15,98 @@ namespace HABsMap.Controllers
         private msdb2293Entities db = new msdb2293Entities();
 
 
-        //GET: Specific Area Samples
-        public ActionResult Index(string areaname)
+        //GET: Specific Area Samples, Take parameters for the search function
+        public ActionResult Index(string areaname, string species, string date)
         {
             //Viewbag variable for the page title
             ViewBag.AreaName = areaname;
 
-            //Get the Shellfish Samples
-            var habs_shellfish_sample = db.habs_sample.Include(h => h.habs_area).Include(h => h.habs_species);
+            //Return all the samples and the area name.
+            var result = (
+                            from a in db.habs_sample
+                            join c in db.habs_area
+                            on a.location_id equals c.location_id
 
 
+                            join d in db.habs_species
+                            on a.species_id equals d.species_id
+                            select new SampleModel()
+                            {
+                                Location = c.location_name,
+                                Status = a.sample_status,
+                                Date = a.sample_date??DateTime.Now,
+                                Species = d.species_name,
+                                ASP = a.asp,
+                                PSP = a.psp,
+                                DSP = a.dsp,
+                                AZP = a.azp,
+                                PTX = a.ptx,
+                                YTX = a.ytx,
+                                Tissue = a.tissue
+                            });
+
+            //Search By Name Only or by Name and Species
             if (!String.IsNullOrEmpty(areaname))
             {
-                //Search for the correct shellfish samples matching the query string passed
-                habs_shellfish_sample = habs_shellfish_sample.Where(h => h.habs_area.location_name.Contains(areaname));
+                result = result.Where(r => r.Location.Contains(areaname));
+                //Name and Species
+                if (!String.IsNullOrEmpty(species))
+                {
+                    result = result.Where(r => r.Species.Contains(species));
+
+                 //Search By Name and Species and Date
+                       if (!String.IsNullOrEmpty(date))
+                        {
+                            DateTime sampleDate = Convert.ToDateTime(date);
+                            result = result.Where(r => r.Date.Equals(sampleDate));
+                        }
+                }
+
+                //Search By Name and Date
+                else if (!String.IsNullOrEmpty(date))
+                {
+                    DateTime sampleDate = Convert.ToDateTime(date);
+                    result = result.Where(r => r.Date.Equals(sampleDate));
+                }
             }
-            //Return them to the view
-            return View(habs_shellfish_sample.ToList());
+
+            //Search By Species Only
+            else if (!String.IsNullOrEmpty(species))
+            {
+                result = result.Where(r => r.Species.Contains(species));   
+                           
+                //Search By Species and Date
+                if (!String.IsNullOrEmpty(date))
+                    {
+                        DateTime sampleDate = Convert.ToDateTime(date);
+                        result = result.Where(r => r.Date.Equals(sampleDate));
+                    }
+            }
+
+            //Search By Date Only
+            else if (!String.IsNullOrEmpty(date))
+            {
+                DateTime sampleDate = Convert.ToDateTime(date);
+                result = result.Where(r => r.Date.Equals(sampleDate));
+            }
+
+
+
+            return View(result);
         }
 
 
 
+
+        //This is for the Angular Search View, Might Get Rid of it
         public ActionResult SearchSamples()
         {
             return View();
         }
 
-        //Prevent the program from caching the JSON result
+
+
+        //Prevent the program from caching the JSON result - Angular Search Page
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public JsonResult GetSamples(string areaname)
         {
@@ -72,119 +137,6 @@ namespace HABsMap.Controllers
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-
-        // GET: Sample/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            habs_sample habs_sample = db.habs_sample.Find(id);
-            if (habs_sample == null)
-            {
-                return HttpNotFound();
-            }
-            return View(habs_sample);
-        }
-
-        // GET: Sample/Create
-        public ActionResult Create()
-        {
-            ViewBag.location_id = new SelectList(db.habs_area, "location_id", "location_name");
-            ViewBag.species_id = new SelectList(db.habs_species, "species_id", "species_name");
-            return View();
-        }
-
-        // POST: Sample/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "sample_id,location_id,species_id,report_id,tissue,asp,azp,dsp,ptx,ytx,psp,sample_status,date_sampled,sample_date")] habs_sample habs_sample)
-        {
-            if (ModelState.IsValid)
-            {
-                db.habs_sample.Add(habs_sample);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.location_id = new SelectList(db.habs_area, "location_id", "location_name", habs_sample.location_id);
-            ViewBag.species_id = new SelectList(db.habs_species, "species_id", "species_name", habs_sample.species_id);
-            return View(habs_sample);
-        }
-
-        // GET: Sample/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            habs_sample habs_sample = db.habs_sample.Find(id);
-            if (habs_sample == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.location_id = new SelectList(db.habs_area, "location_id", "location_name", habs_sample.location_id);
-            ViewBag.species_id = new SelectList(db.habs_species, "species_id", "species_name", habs_sample.species_id);
-            return View(habs_sample);
-        }
-
-        // POST: Sample/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "sample_id,location_id,species_id,report_id,tissue,asp,azp,dsp,ptx,ytx,psp,sample_status,date_sampled,sample_date")] habs_sample habs_sample)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(habs_sample).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.location_id = new SelectList(db.habs_area, "location_id", "location_name", habs_sample.location_id);
-            ViewBag.species_id = new SelectList(db.habs_species, "species_id", "species_name", habs_sample.species_id);
-            return View(habs_sample);
-        }
-
-        // GET: Sample/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            habs_sample habs_sample = db.habs_sample.Find(id);
-            if (habs_sample == null)
-            {
-                return HttpNotFound();
-            }
-            return View(habs_sample);
-        }
-
-        // POST: Sample/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            habs_sample habs_sample = db.habs_sample.Find(id);
-            db.habs_sample.Remove(habs_sample);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
     }

@@ -1,15 +1,15 @@
-﻿var map = L.map('map').setView([53.0000, -8.0000], 7);
+﻿//Initialises the map and sets the coordinates to Ireland
+var map = L.map('map').setView([53.0000, -8.0000], 7);
 
+//Tile Image is needed for the Map library
 L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}.png', {
+    //The maximum amount a user can zoom in
     maxZoom: 12,
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    id: 'mapbox.streets'
+    // The minimum amount a user can zoom out - prevents the user from zooming out too far and showing tiled maps
+    minZoom: 7,
+    //Copyright information on the map
+    attribution: 'Map data &copy; <a href="http://www.marine.ie/">Marine Institute</a>'
 }).addTo(map);
 
-
-
-var marker = L.marker([51.5, -0.09]).addTo(map);
 
 

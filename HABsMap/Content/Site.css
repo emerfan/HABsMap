@@ -136,3 +136,9 @@ label-marine {
     font-size: 28px;
     font-weight: 700;
 }
+
+
+.ui-datepicker {
+    background-color: white;
+    padding: 10px!important;
+}

@@ -1,105 +1,128 @@
-﻿@model IEnumerable<HABsMap.Models.habs_sample>
+﻿@model IEnumerable<HABsMap.Models.SampleModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "HABs Shellfish Samples";
+
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.report_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tissue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.asp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.azp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dsp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ptx)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ytx)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.psp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sample_status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date_sampled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sample_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.habs_area.location_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.habs_species.species_name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.report_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tissue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.asp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.azp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dsp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ptx)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ytx)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.psp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sample_status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_sampled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sample_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.habs_area.location_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.habs_species.species_name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.sample_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.sample_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.sample_id })
-        </td>
-    </tr>
-}
 
-</table>
+
+
+<div class="container page-container">
+    <div class="row">
+        <div class="col-md-12">
+            <!--If areaname parameter is passed to the controller, display heading with the area name, else display search all samples-->
+            @if (ViewBag.AreaName != null)
+            {
+                <h2>Search Sample Results For @ViewBag.AreaName</h2>
+            }
+
+            else
+            {
+                <h2>Search All Samples</h2>
+            }
+
+            <div class="well">
+
+                @using (Html.BeginForm("Index", "Sample", FormMethod.Post, new { @class = "form-inline" }))
+            {    <label for="exampleInputName2">Location Name</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txtAreaname" name="areaname" />
+                </div>
+                <label for="exampleInputEmail2">Species</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txtSpecies" name="species" />
+                </div>
+                <label for="exampleInputEmail2">Sample Date</label>
+                <div class="form-group">
+                    <input type="text" class="form-control date-picker" id="txtDate" name="date" />
+                </div>
+                <button type="submit" class="btn btn-info">Search Samples</button>
+                }
+            </div>
+
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Location)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Species)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tissue)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ASP)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PSP)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AZP)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DSP)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PTX)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YTX)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Location)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Species)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tissue)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ASP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AZP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PTX)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.YTX)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

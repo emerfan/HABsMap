@@ -11,12 +11,15 @@
     <link href="~/Content/leaflet.css" rel="stylesheet" />
 
     <!--Minified JQuery for Map-->
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--<script src="~/Scripts/jquery-1.10.2.min.js"></script>-->
 
 
     <!--AngularJS Minified Library-->
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Controllers/Angular_Controllers/SearchSamples.js"></script>
+
+    <!--JQuery CSS-->
+    <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -32,8 +35,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Map")</li>
+                    <li>@Html.ActionLink("Disclaimer", "About", "Home")</li>
                     <li>@Html.ActionLink("Disclaimer", "Contact", "Home")</li>
                 </ul>
             </div>
@@ -44,6 +47,8 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now - My ASP.NET Application</p>
+
+
         </footer>
     </div>
 
@@ -51,9 +56,37 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+
+    <!--JQuery UI for Datepicker-->
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
     <!--LeafletJS minified script-->
     <script src="~/Scripts/leaflet-0.7.3.min.js"></script>
     <script src="~/Scripts/map-init.js"></script>
+
+    <!--Function to call the JSON method and add markers to the map needs to be on this page in order to work
+    The JSON returned is handled in Scripts/harvesting-areas.js -->
+
+    <script type="text/javascript">
+    //When document is finished parsing
+    $(document).ready(function () {
+        //Prevent JSON data from caching
+        $.ajaxSetup({ cache: false });
+        //The method in the Status Controller which provides the JSON
+        var actionUrl = '@Url.Action("GetMapMarkers", "Status")';
+        //Instruction to get the JSON from the resouce
+       $.getJSON(actionUrl, displayData);
+    });
+
+    </script>
+
+    <!-- DatePicker -->
+    <script type="text/javascript">
+    $(function () {
+        $('.date-picker').datepicker({ dateFormat: "mm/dd/yy" });
+    })
+    </script>
+
     <script src="~/Scripts/harvesting-areas.js"></script>
+
 </body>
 </html>
