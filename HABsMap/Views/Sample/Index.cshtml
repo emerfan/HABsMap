@@ -24,30 +24,6 @@
                 <h2>Search All Samples</h2>
             }
 
-       <!--Search Form-->
-       <div class="well">
-
-            @using (Html.BeginForm("Index", "Sample", FormMethod.Post, new { @class = "form-inline" }))
-            { 
-                <label for="exampleInputName2">Location Name</label>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtAreaname" name="areaname" />
-                    </div>
-                <label for="exampleInputEmail2">Species</label>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtSpecies" name="species" />
-                    </div>
-                <label for="exampleInputEmail2">Sample Date</label>
-                    <div class="form-group">
-                        <input type="text" class="form-control date-picker" id="txtDate" name="date" />
-                    </div>
-                    <button type="submit" class="btn btn-info">Search All Samples</button>
-                }
-
-         </div>
-         <!--End Search Form-->
-
-
             <div class="table-responsive">
 
                 <!-- Breadcrumbs of current search -->

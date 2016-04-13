@@ -10,13 +10,6 @@
     <!--Leaflet.JS CSS-->
     <link href="~/Content/leaflet.css" rel="stylesheet" />
 
-    <!--Minified JQuery for Map-->
-    <!--<script src="~/Scripts/jquery-1.10.2.min.js"></script>-->
-
-
-    <!--AngularJS Minified Library-->
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Controllers/Angular_Controllers/SearchSamples.js"></script>
 
     <!--JQuery CSS-->
     <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
@@ -37,7 +30,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Map")</li>
                     <li>@Html.ActionLink("Area Status List View", "Index", "Status")</li>
-                    <li>@Html.ActionLink("Search All Samples", "Index", "Sample")</li>
+                    <li>@Html.ActionLink("Search Samples", "Search", "Sample")</li>
                     <li>@Html.ActionLink("Disclaimer", "Disclaimer", "Info")</li>
                 </ul>
             </div>
@@ -47,9 +40,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now - My ASP.NET Application</p>
-
-
+            <div class="container">
+                <p>&copy; @DateTime.Now - Marine HABs Map</p>
+            </div>
         </footer>
     </div>
 
@@ -77,6 +70,18 @@
         //Instruction to get the JSON from the resouce
        $.getJSON(actionUrl, displayData);
     });
+
+
+        //When document is finished parsing
+        $(document).ready(function () {
+            //Prevent JSON data from caching
+            $.ajaxSetup({ cache: false });
+            //The method in the Status Controller which provides the JSON
+            var actionUrl = '@Url.Action("GetAnyMarkers", "Status")';
+            //Instruction to get the JSON from the resouce
+            $.getJSON(actionUrl, displayData);
+        });
+
 
     </script>
 

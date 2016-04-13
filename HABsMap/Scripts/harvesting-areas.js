@@ -5,6 +5,8 @@ function displayData(response) {
     if (response != null) {
         //Loop Through the JSON reponse
         for (var i = 0; i < response.length; i++) {
+            //Format the Sample Date, because JSON returns a string for date
+            var date = new Date(parseInt(response[i].Date.substr(6)));
             //Get the Latitude and Longitude from the JSON response and add to the Leaflet Map
             L.marker([response[i].latitude, response[i].longitude])
                 .addTo(map)
@@ -13,17 +15,19 @@ function displayData(response) {
                     (
                     // Sample Location Name
                     "<strong style='text-align:center; font-size: 15px;'>Sample Area: "
-                    + response[i].location_name
+                    + response[i].Location
                     + "</strong>"
                     //Current Area Status
                     + "<br/><strong>Current Status: </strong>"
-                    + response[i].getCurrentStatus
+                    + response[i].Status
                     //Species Sampled in the most recent sample
                     + "<br/><strong>Species Sampled: </strong>"
                     //The name of the species which was sampled
-                    + response[i].species_name
-                    //A link which leads to all samples for the area. The area name is passed as a string query to the method in the sample controller
-                    + "<br/><a href='/sample?areaname=" + response[i].location_name + "'><btn class='btn btn-xs btn-info' style='margin-top: 8px;'>View All Area Samples</btn></a>"
+                    + response[i].Species
+                    + "<br/><strong>Sample Date: </strong>"
+                    //The name of the species which was sampled
+                    + date
+                    
                 );
         }
     }

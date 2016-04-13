@@ -16,12 +16,15 @@ namespace HABsMap.Controllers
 
 
         //GET: Specific Area Samples, Take parameters for the search function
-        public ActionResult Index(string areaname, string species, string date)
+        public ActionResult Index(string areaname, string species, string date, string dateto)
         {
             //Viewbag variable for the page title
             ViewBag.AreaName = areaname;
             ViewBag.Species = species;
             ViewBag.Date = date;
+
+            try
+            {
 
             //Return all the samples and the area name.
             var result = (
@@ -59,17 +62,21 @@ namespace HABsMap.Controllers
                  //Search By Name and Species and Date
                        if (!String.IsNullOrEmpty(date))
                         {
-                            DateTime sampleDate = Convert.ToDateTime(date);
-                            result = result.Where(r => r.Date.Equals(sampleDate));
+                            DateTime sampleDateFrom = Convert.ToDateTime(date);
+                            DateTime sampleDateTo = Convert.ToDateTime(dateto);
+                            //Search between two dates
+                            result = result.Where(r => r.Date >= sampleDateFrom && r.Date <= sampleDateTo);
                         }
                 }
 
                 //Search By Name and Date
                 else if (!String.IsNullOrEmpty(date))
                 {
-                    DateTime sampleDate = Convert.ToDateTime(date);
-                    result = result.Where(r => r.Date.Equals(sampleDate));
-                }
+                        DateTime sampleDateFrom = Convert.ToDateTime(date);
+                        DateTime sampleDateTo = Convert.ToDateTime(dateto);
+                        //Search between two dates
+                        result = result.Where(r => r.Date >= sampleDateFrom && r.Date <= sampleDateTo);
+                    }
             }
 
             //Search By Species Only
@@ -85,14 +92,38 @@ namespace HABsMap.Controllers
                     }
             }
 
-            //Search By Date Only
+            //Search Between Two Dates Only
             else if (!String.IsNullOrEmpty(date))
             {
-                DateTime sampleDate = Convert.ToDateTime(date);
-                result = result.Where(r => r.Date.Equals(sampleDate));
+                DateTime sampleDateFrom = Convert.ToDateTime(date);
+                DateTime sampleDateTo = Convert.ToDateTime(dateto);
+                    //Search between two dates
+                    result = result.Where(r => r.Date >= sampleDateFrom && r.Date <= sampleDateTo);
             }
 
             return View(result);
+
+            }
+            catch(Exception err)
+            {
+                return View("Could not get samples.");
+            }
+        }
+
+
+
+
+        //Return the Search Page View
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+
+        //Return the Search Page View
+        public ActionResult Create()
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,73 @@
+﻿
+
+@model IEnumerable<HABsMap.Models.SampleModel>
+
+@{
+    ViewBag.Title = "HABs Shellfish Samples";
+
+}
+
+
+
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+<div class="container page-container">
+    <div class="row">
+        <div class="col-md-12">
+            <!--Search Form-->
+            <div class="well">
+                <h2 style="margin-top: 0px; text-align:center; color:#2457c4; font-weight: 700;"><span class="glyphicon glyphicon-search"></span>    Search the Shellfish Samples Database</h2>
+                <p class="lead" style="text-align:center; font-weight: 200;">Enter a Location Name, Species and a Date Range to search the samples database.</p>
+                <hr/>
+
+                @using (Html.BeginForm("Index", "Sample", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-1">
+                        <div class="form-group">
+                            <label for="Location Name" class="col-md-4 control-label">Location Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="txtAreaname" name="areaname" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Species" class="col-md-4 control-label">Species Sampled</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="txtSpecies" name="species" required="required" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="Sample Date From" class="col-md-4 control-label">Date From</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control date-picker" id="txtDate" name="date" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Sample Date Two" class="col-md-4 control-label">Date To</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control date-picker" id="txtDate2" name="dateto" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" class="btn btn-marine">Search Samples</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                }
+
+            </div>
+            <!--End Search Form-->
+
+        </div>
+    </div>
+</div>
+

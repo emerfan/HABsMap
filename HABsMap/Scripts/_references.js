@@ -1,6 +1,4 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="angular.min.js" />
-/// <reference path="angular-mocks.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="harvesting-areas.js" />
 /// <reference path="jquery.validate.js" />

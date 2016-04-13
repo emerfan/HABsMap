@@ -26,13 +26,13 @@ namespace HABsMap.Models
         /// </summary>
         /// 
 
-        public string location_name;
+        public string Location;
         public decimal latitude;
         public decimal longitude;
-        public string status;
+        public string sample_status;
         public short species;
         public string spec;
-        public DateTime sampDate;
+        public DateTime Date;
 
 
         //Constructor for Status Model Class
@@ -44,23 +44,23 @@ namespace HABsMap.Models
         //if they are not sampled every 14 days
         public int difference
         {
-            get { return (DateTime.Now - sampDate).Days; }
+            get { return (DateTime.Now - Date).Days; }
 
         }
 
 
         //Current Status Getter, checks the difference and returns either a closed / pending status or the sample status
-        public string getCurrentStatus
+        public string Status
         {
             get {
-                    if (difference <= 14)
-                        { return "Closed / Pending ";}
-                    else{ return status;}
+                    if (difference >= 14)
+                        { return "Closed / Pending";}
+                    else{ return sample_status;}
                 }         
         }
 
         // Species Name Getter, Calls method which returns the sample species name
-        public string species_name
+        public string Species
         {
             get
             {
@@ -71,10 +71,19 @@ namespace HABsMap.Models
         //Method to get the species name from the habs_species model
         public string getSpeciesName()
         {
-            string species = (from spec in db.habs_species
-                           where spec.species_id == this.species
-                           select spec.species_name).First();
-            return species;
+            try
+            {
+                string species = (from h in db.habs_species
+                                  where h.species_id == this.species
+                                  select h.species_name).First();
+                                  return species;
+            }
+            catch(Exception err)
+            {
+                return "Species Unknown";
+            }
+
+
         }
 
     }

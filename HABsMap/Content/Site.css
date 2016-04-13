@@ -62,6 +62,7 @@ a
 .page-container
 {
     padding-top: 60px;
+    min-height: 600px;
 }
 
 label-marine {
@@ -142,3 +143,21 @@ label-marine {
     background-color: white;
     padding: 10px!important;
 }
+
+
+
+.btn-marine
+{
+background-color:#45CE2A;
+border-color: #45CE2A;
+color: #ffffff;
+}
+
+.btn-marine:hover
+{
+background-color:#2457c4;
+border-color: #2457c4;
+color: #ffffff;
+}
+
+
