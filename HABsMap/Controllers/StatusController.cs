@@ -20,6 +20,21 @@ namespace HABsMap.Controllers
             //Handle Exceptions
             try
             {
+                //Code to create a Dropdown list of the areas
+                //List to hold the areas for the dropdown
+                var areaList = new List<String>();
+
+                //query to get the areas in alphabetical order from the list
+                var areaQuery = from a in db.habs_area
+                                orderby a.location_name
+                                select a.location_name;
+
+                //Add to areas to the list
+                areaList.AddRange(areaQuery.Distinct());
+
+                //Create the SelectList to pass to the view
+                ViewBag.areaname = new SelectList(areaList);
+
                 //Query to get most recent sample from the samples table and the areas table
                 var result = from a in db.habs_area
                              join c in db.habs_sample
@@ -33,10 +48,11 @@ namespace HABsMap.Controllers
                                  longitude = a.longitude,
                                  species = sample.species_id,
                                  sample_status = sample.sample_status,
-                                 Date = sample.sample_date ?? DateTime.Now
+                                 frequency = sample.sample_frequency,
+                                 Date = sample.date_sampled ?? DateTime.Now
                              };
 
-                //Search By Name Only or by Name and Species
+                //Search By Name 
                 if (!String.IsNullOrEmpty(areaname))
                 {
                     //Filter the results if an areaname is searched for.
@@ -58,7 +74,7 @@ namespace HABsMap.Controllers
         //Returns areas as JSON Objects to be passed to the LeafletJS Map
         //Prevents JSON Caching
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult GetMapMarkers()
+        public JsonResult GetMapMarkers(string areaname)
         {
 
             try
@@ -76,8 +92,17 @@ namespace HABsMap.Controllers
                                  longitude = a.longitude,
                                  species = sample.species_id,
                                  sample_status = sample.sample_status,
-                                 Date = sample.sample_date ?? DateTime.Now
+                                 frequency = sample.sample_frequency,
+                                 Date = sample.date_sampled ?? DateTime.Now
                              };
+
+                //Search By Name 
+                if (!String.IsNullOrEmpty(areaname))
+                {
+                    //Filter the results if an areaname is searched for.
+                    result = result.Where(r => r.Location.Contains(areaname));
+                }
+
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             //Exception Handling

@@ -28,10 +28,11 @@
 
                 <!-- Breadcrumbs of current search -->
                 <ul class="breadcrumb" style="margin-bottom: 0px;">
-                    <li>Your Search:</li>
-                    <li><strong>Location Name:</strong> @ViewBag.AreaName</li>
-                    <li><strong>Sample Species:</strong> @ViewBag.Species</li>
-                    <li><strong>Sample Date:</strong> @ViewBag.Date</li>
+                    <li><span style="color: #2457c4; font-weight:700;">Your Search Query:</span></li>
+                    <li><span style="color: #2457c4; font-weight:700;">Location Name:</span> @ViewBag.AreaName</li>
+                    <li><span style="color: #2457c4; font-weight:700;">Sample Species:</span> @ViewBag.Species</li>
+                    <li><span style="color: #2457c4; font-weight:700;">Date From:</span> @ViewBag.Date</li>
+                    <li><span style="color: #2457c4; font-weight:700;">Date To:</span> @ViewBag.DateTo</li>
                 </ul>
                 <table class="table">
                     <tr>
@@ -67,6 +68,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.YTX)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Frequency)
                         </th>
                     </tr>
 
@@ -105,6 +109,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.YTX)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Frequency) Days
                             </td>
                         </tr>
                     }

@@ -50,15 +50,24 @@ namespace HABsMap.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "user_id,user_email,email_status,location_id")] habs_alert habs_alert)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.habs_alert.Add(habs_alert);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.habs_alert.Add(habs_alert);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.location_id = new SelectList(db.habs_area, "location_id", "location_name", habs_alert.location_id);
+                return View(habs_alert);
+
+            }
+            catch(Exception err)
+            {
+                return View("Could not add email.");
             }
 
-            ViewBag.location_id = new SelectList(db.habs_area, "location_id", "location_name", habs_alert.location_id);
-            return View(habs_alert);
         }
 
         // GET: Alert/Edit/5

@@ -31,13 +31,13 @@
                         <div class="form-group">
                             <label for="Location Name" class="col-md-4 control-label">Location Name</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="txtAreaname" name="areaname" required="required" />
+                                @Html.DropDownList("areaname", null, htmlAttributes: new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Species" class="col-md-4 control-label">Species Sampled</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="txtSpecies" name="species" required="required" />
+                                @Html.DropDownList("species", null, htmlAttributes: new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
@@ -45,13 +45,13 @@
                         <div class="form-group">
                             <label for="Sample Date From" class="col-md-4 control-label">Date From</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control date-picker" id="txtDate" name="date" required="required" />
+                                <input type="text" class="form-control date-picker" placeholder ="e.g. 09/02/2016" id="txtDate" name="date" required="required" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Sample Date Two" class="col-md-4 control-label">Date To</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control date-picker" id="txtDate2" name="dateto" required="required" />
+                                <input type="text" class="form-control date-picker" id="txtDate2" placeholder="e.g. 14/02/2016" name ="dateto" required="required" />
                             </div>
                         </div>
                         <div class="form-group">

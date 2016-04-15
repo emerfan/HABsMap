@@ -33,6 +33,7 @@ namespace HABsMap.Models
         public short species;
         public string spec;
         public DateTime Date;
+        public short? frequency;
 
 
         //Constructor for Status Model Class
@@ -53,7 +54,7 @@ namespace HABsMap.Models
         public string Status
         {
             get {
-                    if (difference >= 14)
+                    if (difference >= frequency)
                         { return "Closed / Pending";}
                     else{ return sample_status;}
                 }         

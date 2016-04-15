@@ -41,6 +41,7 @@
           <Property Name="sample_status" Type="nchar" MaxLength="30" />
           <Property Name="date_sampled" Type="datetime2" Precision="0" />
           <Property Name="sample_date" Type="date" />
+          <Property Name="sample_frequency" Type="smallint" />
         </EntityType>
         <EntityType Name="habs_species">
           <Key>
@@ -148,6 +149,7 @@
           <NavigationProperty Name="habs_area" Relationship="Self.FK_habs_sample_habs_area1" FromRole="habs_sample" ToRole="habs_area" />
           <NavigationProperty Name="habs_species" Relationship="Self.FK_habs_sample_habs_species1" FromRole="habs_sample" ToRole="habs_species" />
           <Property Name="sample_date" Type="DateTime" Precision="0" />
+          <Property Name="sample_frequency" Type="Int16" />
         </EntityType>
         <EntityType Name="habs_species">
           <Key>
@@ -240,6 +242,7 @@
           <EntitySetMapping Name="habs_sample">
             <EntityTypeMapping TypeName="msdb2293Model.habs_sample">
               <MappingFragment StoreEntitySet="habs_sample">
+                <ScalarProperty Name="sample_frequency" ColumnName="sample_frequency" />
                 <ScalarProperty Name="sample_date" ColumnName="sample_date" />
                 <ScalarProperty Name="sample_id" ColumnName="sample_id" />
                 <ScalarProperty Name="location_id" ColumnName="location_id" />

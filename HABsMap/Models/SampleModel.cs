@@ -33,6 +33,7 @@ namespace HABsMap.Models
         public string PTX;
         public string YTX;
         public string Tissue;
+        public short ? Frequency;
 
         public SampleModel()
         {
