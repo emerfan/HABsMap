@@ -15,7 +15,7 @@ namespace HABsMap.Controllers
 
         // GET: Status
         //Returns a List View of the Areas
-        public ActionResult Index(string areaname)
+        public ActionResult ListView(string areaname)
         {
             //Handle Exceptions
             try
@@ -67,14 +67,14 @@ namespace HABsMap.Controllers
             catch(Exception err)
             {
                 //Return Error Message
-                return View("Error, Could not get status update list.");
+                return View();
             }
         }
 
         //Returns areas as JSON Objects to be passed to the LeafletJS Map
         //Prevents JSON Caching
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult GetMapMarkers(string areaname)
+        public JsonResult GetMapMarkers()
         {
 
             try
@@ -96,12 +96,6 @@ namespace HABsMap.Controllers
                                  Date = sample.date_sampled ?? DateTime.Now
                              };
 
-                //Search By Name 
-                if (!String.IsNullOrEmpty(areaname))
-                {
-                    //Filter the results if an areaname is searched for.
-                    result = result.Where(r => r.Location.Contains(areaname));
-                }
 
                 return Json(result, JsonRequestBehavior.AllowGet);
             }

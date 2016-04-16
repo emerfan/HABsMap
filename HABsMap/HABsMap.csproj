@@ -146,7 +146,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AlertController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\SampleController.cs" />
@@ -185,15 +184,12 @@
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClass.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\list.PNG" />
-    <Content Include="Content\Images\map-bg.PNG" />
-    <Content Include="Content\Images\clipboard-list-flat.png" />
     <Content Include="Content\Images\marine-logo.jpg" />
-    <Content Include="Content\Images\world-map-icon.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -289,13 +285,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Sample\Index.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
-    <Content Include="Views\Alert\Create.cshtml" />
-    <Content Include="Views\Alert\Delete.cshtml" />
-    <Content Include="Views\Alert\Details.cshtml" />
-    <Content Include="Views\Alert\Edit.cshtml" />
-    <Content Include="Views\Alert\Index.cshtml" />
     <Content Include="Views\Info\Disclaimer.cshtml" />
-    <Content Include="Views\Status\Index.cshtml" />
+    <Content Include="Views\Status\ListView.cshtml" />
     <Content Include="Views\Sample\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>

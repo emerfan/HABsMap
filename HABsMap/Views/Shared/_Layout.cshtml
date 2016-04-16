@@ -29,12 +29,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Map")</li>
-                    <li>@Html.ActionLink("Area Status List View", "Index", "Status")</li>
+                    <li>@Html.ActionLink("Area Status List View", "ListView", "Status")</li>
                     <li>@Html.ActionLink("Search Samples", "Search", "Sample")</li>
                     <li>@Html.ActionLink("Disclaimer", "Disclaimer", "Info")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Email Alerts", "Create", "Alert")</li>
                 </ul>
             </div>
         </div>
@@ -94,6 +93,7 @@
         $('.date-picker').datepicker({ dateFormat: "mm/dd/yy" });
     })
     </script>
+
 
     <script src="~/Scripts/harvesting-areas.js"></script>
 

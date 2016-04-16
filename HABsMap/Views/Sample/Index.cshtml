@@ -8,31 +8,33 @@
 
 
 
-
-
 <div class="container page-container">
     <div class="row">
         <div class="col-md-12">
+
+            <!--Error message if sample search unsuccessful-->
+            @ViewBag.ErrorMessage
             <!--If areaname parameter is passed to the controller, display heading with the area name, else display search all samples-->
             @if (ViewBag.AreaName != null)
             {
-                <h2>Search Sample Results For @ViewBag.AreaName</h2>
+                <h2 class="hidden-print">Search Sample Results For @ViewBag.AreaName</h2>
             }
 
             else
             {
-                <h2>Search All Samples</h2>
+                <h2 class="hidden-print">Search All Samples</h2>
             }
 
             <div class="table-responsive">
 
                 <!-- Breadcrumbs of current search -->
-                <ul class="breadcrumb" style="margin-bottom: 0px;">
-                    <li><span style="color: #2457c4; font-weight:700;">Your Search Query:</span></li>
-                    <li><span style="color: #2457c4; font-weight:700;">Location Name:</span> @ViewBag.AreaName</li>
-                    <li><span style="color: #2457c4; font-weight:700;">Sample Species:</span> @ViewBag.Species</li>
-                    <li><span style="color: #2457c4; font-weight:700;">Date From:</span> @ViewBag.Date</li>
-                    <li><span style="color: #2457c4; font-weight:700;">Date To:</span> @ViewBag.DateTo</li>
+                <ul class="breadcrumb search-breadcrumb">
+                    <li><span class="your-query">Your Search Query:</span></li>
+                    <li><span class="crumb">Location Name:</span> @ViewBag.AreaName</li>
+                    <li><span class="crumb">Sample Species:</span> @ViewBag.Species</li>
+                    <li><span class="crumb">Date From:</span> @ViewBag.Date</li>
+                    <li><span class="crumb">Date To:</span> @ViewBag.DateTo</li>
+                    <li><btn class="btn btn-xs btn-marine" onclick="window.print(); return false;">Print Results</btn></li>
                 </ul>
                 <table class="table">
                     <tr>
